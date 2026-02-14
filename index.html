@@ -6,18 +6,15 @@
 <title>For You ❤️</title>
 
 <style>
-
 body{
   margin:0;
   font-family:Segoe UI;
   text-align:center;
   overflow-x:hidden;
-overflow-y:auto;
-
   background:linear-gradient(135deg,#ff758c,#ff7eb3);
 }
 
-.container{ position:relative; z-index:2; margin-top:120px; }
+.container{ position:relative; z-index:5; margin-top:120px; }
 
 button{
   padding:15px 35px;
@@ -32,45 +29,43 @@ button{
 
 .hidden{ display:none; }
 
-/* buttons area */
-.btn-container{
-  position:relative;
-  width:260px;
-  height:80px;
-  margin:auto;
-}
-
-#yesBtn{ position:absolute; left:0; }
-#noBtn{ position:absolute; right:0; }
-
 /* petals */
 .petal{
   position:fixed;
   top:-50px;
   font-size:26px;
   animation:fall linear forwards;
+  pointer-events:none;
+  z-index:1;
 }
 @keyframes fall{
   0%{transform:translateY(0)}
   100%{transform:translateY(110vh)}
 }
 
-/* envelope */
-.envelope{
-  width:auto;
-  height:auto;
-  display:inline-block;
-  background:none;
-  box-shadow:none;
-  padding:0;
-  border-radius:0;
-  font-weight:bold;
-  font-size:32px;
-  color:white;
-  text-shadow:0 0 8px rgba(0,0,0,0.7);
+/* glowing hearts (page1 & 3) */
+.heart{
+  position:fixed;
+  bottom:-30px;
+  font-size:70px;
+  color:#ffb6c1;
+  text-shadow:0 0 10px #ff9bb0,0 0 25px #ff9bb0;
+  animation:floatUp linear forwards;
+  pointer-events:none;
+  z-index:1;
 }
 
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(.8);opacity:.9}
+  100%{transform:translateY(-110vh) scale(1.5);opacity:0}
+}
 
+/* PAGE2 TEXT */
+.envelope{
+  font-size:32px;
+  color:white;
+  text-shadow:0 0 10px black;
+}
 
 /* page3 */
 .final-page img{
@@ -78,63 +73,19 @@ button{
   max-width:90%;
   border-radius:20px;
 }
-/* Floating glowing hearts */
-.heart {
-  position: fixed;
-  bottom: -30px;
-  font-size: 70px;
-  color: #ffb6c1;
-  text-shadow: 0 0 10px #ff9bb0, 0 0 25px #ff9bb0;
-  animation: floatUp linear forwards;
-  pointer-events: none;
-  z-index: 0;
-}
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0.8);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(-110vh) scale(1.5);
-    opacity: 0;
-  }
-}
-#page2{
-  margin-top:180px;
-}
-/* Photo hearts */
+/* PHOTO HEARTS (PAGE2) */
 .photo-heart{
   position:fixed;
   bottom:-40px;
-  width:80px;
-  height:80px;
+  width:70px;
+  height:70px;
   background:url("us.jpg") center/cover no-repeat;
-  clip-path: path("M40 70 C 10 40, 10 15, 40 25 C 70 15, 70 40, 40 70 Z");
+  clip-path: polygon(50% 90%,0% 40%,20% 15%,50% 35%,80% 15%,100% 40%);
   animation: floatUp linear forwards;
   pointer-events:none;
+  z-index:1;
 }
-.photo-heart{
-  position:fixed;
-  bottom:-40px;
-  width:60px;
-  height:60px;
-  background:url("us.jpg") center/cover no-repeat;
-
-  /* heart shape */
-  clip-path: polygon(
-    50% 90%,
-    0% 40%,
-    20% 15%,
-    50% 35%,
-    80% 15%,
-    100% 40%
-  );
-
-  animation: floatUp linear forwards;
-  pointer-events:none;
-}
-
 </style>
 </head>
 
@@ -144,12 +95,12 @@ button{
   <h1>Will you be Mine? ❤️</h1>
   <button onclick="showPage2()">YES</button>
 </div>
-</div>
 
 <div class="container hidden" id="page2">
-  <div class="envelope">I Love You Mere Prince 💌
-  vha no nhi tha kyuki apke pass aur koi option nahi hai❤️
- </div>
+  <div class="envelope">
+    I Love You Mere Prince 💌<br>
+    aapke paas aur koi option nahi hai ❤️
+  </div>
   <br>
   <button onclick="goToFinal()">❤️ Click Me</button>
 </div>
@@ -158,22 +109,13 @@ button{
   <img src="d.jpg">
   <p style="color:white;font-size:20px;padding:20px">
     Happy Valentine Day my Prince meri jaan. I love you so much very very much❤️
-    This valentine wish is from your coorporate girly hahahahahaha.
-    For us valentine doesnt matter much because we are not in dating phase now
-    we are in mia biwi phase hahhahahahaha yep because we have long term goal.
-    Babes I know you know everything and your surroundings are enough to guide you.
-    But then also dont know why but I want to remind you everyday that you have  
-    potential to complete all the dreams jaan. And I am always with you always. 
-    I have much to say but I dont wanna say because you know everything.
-    Yep I am so much dramatic. But My mood will never be so bad that 
-    I would ever think—either in my heart or in my mind—about being apart from you. Never.❤️
-                <br> YOUR GUNNU LOVES YOU SO MUCH PRINCE❤️ </br>  
+    YOUR GUNNU LOVES YOU SO MUCH PRINCE❤️
   </p>
 </div>
 
 <script>
 
-/* ROSE PETALS (page 1 & 3) */
+/* petals (page1 & 3) */
 setInterval(()=>{
   const p=document.createElement("div");
   p.className="petal";
@@ -184,22 +126,21 @@ setInterval(()=>{
   setTimeout(()=>p.remove(),8000);
 },300);
 
-/* FLOATING NORMAL HEARTS */
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (6 + Math.random() * 5) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 11000);
-}, 500);
+/* glowing hearts */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*5)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),11000);
+},500);
 
 let photoHeartInterval;
 
-/* PHOTO HEARTS FOR PAGE 2 */
 function startPhotoHearts(){
-  photoHeartInterval = setInterval(()=>{
+  photoHeartInterval=setInterval(()=>{
     const h=document.createElement("div");
     h.className="photo-heart";
     h.style.left=Math.random()*100+"vw";
@@ -209,7 +150,6 @@ function startPhotoHearts(){
   },400);
 }
 
-/* PAGE SWITCH */
 function showPage2(){
   document.getElementById("page1").classList.add("hidden");
   document.getElementById("page2").classList.remove("hidden");
@@ -223,10 +163,10 @@ function goToFinal(){
 }
 
 </script>
-
-
 </body>
 </html>
+
+
 
 
 
