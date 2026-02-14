@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Segoe UI;
+  text-align:center;
+  overflow-x:hidden;
+overflow-y:auto;
+
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+}
+
+.container{ position:relative; z-index:2; margin-top:120px; }
+
+button{
+  padding:15px 35px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4b6e;
+  cursor:pointer;
+  margin:10px;
+}
+
+.hidden{ display:none; }
+
+/* buttons area */
+.btn-container{
+  position:relative;
+  width:260px;
+  height:80px;
+  margin:auto;
+}
+
+#yesBtn{ position:absolute; left:0; }
+#noBtn{ position:absolute; right:0; }
+
+/* petals */
+.petal{
+  position:fixed;
+  top:-50px;
+  font-size:26px;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(110vh)}
+}
+
+/* envelope */
+.envelope{
+  width:260px;
+  height:160px;
+  background:white;
+  margin:auto;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+  padding-top:60px;
+  font-weight:bold;
+  font-size:22px;
+}
+
+/* page2 background */
+#page2::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url("us.jpg") center/cover no-repeat;
+  filter:grayscale(100%);
+  z-index:-1;
+}
+
+/* page3 */
+.final-page img{
+  width:380px;
+  max-width:90%;
+  border-radius:20px;
+}
+/* Floating glowing hearts */
+.heart {
+  position: fixed;
+  bottom: -30px;
+  font-size: 70px;
+  color: #ffb6c1;
+  text-shadow: 0 0 10px #ff9bb0, 0 0 25px #ff9bb0;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page1">
+  <h1>Will you be Mine? ❤️</h1>
+  <button onclick="showPage2()">YES</button>
+</div>
+</div>
+
+<div class="container hidden" id="page2">
+  <div class="envelope">I Love You Mere Prince 💌
+  vha no nhi tha kyuki apke pass aur koi option nahi hai❤️
+ </div>
+  <br>
+  <button onclick="goToFinal()">❤️ Click Me</button>
+</div>
+
+<div class="container hidden final-page" id="page3">
+  <img src="d.jpg">
+  <p style="color:white;font-size:20px;padding:20px">
+    Happy Valentine Day my Prince meri jaan. I love you so much very very much❤️
+    This valentine wish is from your coorporate girly hahahahahaha.
+    For us valentine doesnt matter much because we are not in dating phase now
+    we are in mia biwi phase hahhahahahaha yep because we have long term goal.
+    Babes I know you know everything and your surroundings are enough to guide you.
+    But then also dont know why but I want to remind you everyday that you have  
+    potential to complete all the dreams jaan. And I am always with you always. 
+    I have much to say but I dont wanna say because you know everything.
+    Yep I am so much dramatic. But My mood will never be so bad that 
+    I would ever think—either in my heart or in my mind—about being apart from you. Never.❤️
+                <br> YOUR GUNNU LOVES YOU SO MUCH PRINCE❤️ </br>  
+  </p>
+</div>
+
+<script>
+
+
+/* petals */
+setInterval(()=>{
+  const p=document.createElement("div");
+  p.className="petal";
+  p.innerHTML="🌹";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),8000);
+},300);
+
+function showPage2(){
+  page1.classList.add("hidden");
+  page2.classList.remove("hidden");
+}
+
+function goToFinal(){
+  page2.classList.add("hidden");
+  page3.classList.remove("hidden");
+}
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (6 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 11000);
+}, 500);
+
+</script>
+
+</body>
+</html>
