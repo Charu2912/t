@@ -115,6 +115,17 @@ button{
 #page2{
   margin-top:180px;
 }
+/* Photo hearts */
+.photo-heart{
+  position:fixed;
+  bottom:-40px;
+  width:80px;
+  height:80px;
+  background:url("us.jpg") center/cover no-repeat;
+  clip-path: path("M40 70 C 10 40, 10 15, 40 25 C 70 15, 70 40, 40 70 Z");
+  animation: floatUp linear forwards;
+  pointer-events:none;
+}
 
 </style>
 </head>
@@ -169,7 +180,9 @@ setInterval(()=>{
 function showPage2(){
   page1.classList.add("hidden");
   page2.classList.remove("hidden");
+  startPhotoHearts();
 }
+
 
 function goToFinal(){
   page2.classList.add("hidden");
@@ -187,11 +200,24 @@ setInterval(() => {
 
   setTimeout(() => heart.remove(), 11000);
 }, 500);
+let photoHeartInterval;
+
+function startPhotoHearts(){
+  photoHeartInterval = setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="photo-heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+  },800);
+}
 
 </script>
 
 </body>
 </html>
+
 
 
 
