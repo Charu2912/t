@@ -173,8 +173,7 @@ button{
 
 <script>
 
-
-/* petals */
+/* ROSE PETALS (page 1 & 3) */
 setInterval(()=>{
   const p=document.createElement("div");
   p.className="petal";
@@ -185,44 +184,20 @@ setInterval(()=>{
   setTimeout(()=>p.remove(),8000);
 },300);
 
-function showPage2(){
-  page1.classList.add("hidden");
-  page2.classList.remove("hidden");
-  startPhotoHearts();
-}
-
-
-
-function goToFinal(){
-  page2.classList.add("hidden");
-  page3.classList.remove("hidden");
-}
+/* FLOATING NORMAL HEARTS */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "❤";
-
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (6 + Math.random() * 5) + "s";
-
   document.body.appendChild(heart);
-
   setTimeout(() => heart.remove(), 11000);
 }, 500);
+
 let photoHeartInterval;
 
-function startPhotoHearts(){
-  photoHeartInterval = setInterval(()=>{
-    const h=document.createElement("div");
-    h.className="photo-heart";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=(6+Math.random()*4)+"s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),10000);
-  },800);
-}
-let photoHeartInterval;
-
+/* PHOTO HEARTS FOR PAGE 2 */
 function startPhotoHearts(){
   photoHeartInterval = setInterval(()=>{
     const h=document.createElement("div");
@@ -234,7 +209,21 @@ function startPhotoHearts(){
   },400);
 }
 
+/* PAGE SWITCH */
+function showPage2(){
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+  startPhotoHearts();
+}
+
+function goToFinal(){
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page3").classList.remove("hidden");
+  clearInterval(photoHeartInterval);
+}
+
 </script>
+
 
 </body>
 </html>
